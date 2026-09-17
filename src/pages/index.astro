@@ -1,17 +1,296 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import CrmBlock from '../components/CrmBlock.astro';
 ---
+<Layout title="מכון וקסלר אימון כושר אישי וייעוץ תזונה">
+    <style>
+        @keyframes scrollRTL {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); } 
+        }
+        .animate-scroll {
+            animation: scrollRTL 70s linear infinite;
+        }
+        .animate-scroll:hover {
+            animation-play-state: paused;
+        }
+    </style>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+    <!-- Hero Section -->
+    <section class="bg-blue-900 text-white py-24 text-center relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-6xl font-bold mb-6">מכון וקסלר</h1>
+            <p class="text-2xl mb-8 max-w-2xl mx-auto opacity-90">הדרך המדויקת שלך לבריאות, כושר והתפתחות מקצועית</p>
+        </div>
+    </section>
+
+    <!-- Intro with כללי 1 -->
+    <section class="py-20 bg-gray-50 border-t border-gray-100">
+        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl">
+            <div>
+                <h2 class="text-4xl font-bold mb-6 text-blue-900">הדרך שלכם להצלחה</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    בין אם המטרה שלכם היא לסגל לעצמכם אורח חיים בריא, פעיל ומאוזן יותר, ובין אם אתם חולמים להפוך את התשוקה שלכם למקצוע – הגעתם למקום הנכון. במכון וקסלר אנו מציעים מעטפת שלמה המותאמת בדיוק לצרכים שלכם.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    החל מתוכניות אימון וייעוץ תזונה אישיות שיעזרו לכם להגיע לגרסה הטובה ביותר של עצמכם, ועד לקורסים מקצועיים מקיפים שיעניקו לכם את הידע, הכלים והביטחון להפוך למאמני כושר ויועצי תזונה מובילים בתעשייה.
+                </p>
+            </div>
+            <div>
+                <img src="/images/כללי 1.jpg" alt="צוות מכון וקסלר" class="rounded-2xl shadow-xl w-full object-cover aspect-video">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Cards -->
+    <section class="py-20 bg-white border-t border-b border-gray-100">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-4xl font-bold text-center mb-12 text-blue-900">התוכניות שלנו</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/images/אימון אישי.jpg" alt="אימון אישי" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 right-4 text-2xl font-bold text-white">אימון אישי</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">תוכנית אימונים מותאמת אישית הכוללת פעילות אירובית ואימוני כוח לשיפור הכושר ותחושת המסוגלות</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/images/ייעוץ תזונה.jpg" alt="ייעוץ תזונה" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-green-800/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 right-4 text-2xl font-bold text-white">ייעוץ תזונה</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">שינוי תזונתי הדרגתי בשיטת הציפוף החוצה לבניית סדר יום עם ארוחות מסודרות ומזינות</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/images/קורסים דיגיטליים.jpg" alt="קורסים דיגיטליים" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-800/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 right-4 text-2xl font-bold text-white">קורסים דיגיטליים</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">הכשרות אונליין למאמני כושר יועצי תזונה וניקוי רעלים ללמידה מכל מקום ובקצב שלך</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/images/הכשרות פרונטליות.png" alt="הכשרות פרונטליות" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-yellow-700/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 right-4 text-2xl font-bold text-white">הכשרות פרונטליות</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">קורסים מקצועיים הנלמדים בכיתות לימוד עם ליווי אישי צוות מרצים מוביל ותרגול מעשי בשטח</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features with כללי 2 -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl">
+            <div>
+                <img src="/images/כללי 2.jpg" alt="אווירת אימון" class="rounded-2xl shadow-xl w-full h-auto object-contain max-h-[550px]">
+            </div>
+            <div>
+                <h2 class="text-4xl font-bold mb-8 text-blue-900">אז מה אנחנו מציעים בעצם</h2>
+                <div class="space-y-6">
+                    <div class="flex items-start bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <div class="text-blue-500 ml-4 text-3xl shrink-0">💻</div>
+                        <div>
+                            <h3 class="text-lg font-bold mb-1">למידה משולבת</h3>
+                            <p class="text-gray-600 text-sm">תיאוריה שנתמכת בתרגול מעשי אינטנסיבי</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <div class="text-blue-500 ml-4 text-3xl shrink-0">🎓</div>
+                        <div>
+                            <h3 class="text-lg font-bold mb-1">מרצים פעילים בתעשייה</h3>
+                            <p class="text-gray-600 text-sm">למד ממי שחי את התחום יום יום ומכיר את כל הניואנסים</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <div class="text-blue-500 ml-4 text-3xl shrink-0">⏱️</div>
+                        <div>
+                            <h3 class="text-lg font-bold mb-1">גמישות מקסימלית</h3>
+                            <p class="text-gray-600 text-sm">אפשרויות למידה פרונטלית מקוונת או משולבת לפי הצרכים שלך</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <div class="text-blue-500 ml-4 text-3xl shrink-0">🤝</div>
+                        <div>
+                            <h3 class="text-lg font-bold mb-1">רשת קשרים מקצועית</h3>
+                            <p class="text-gray-600 text-sm">חבר לקהילה של בוגרים ומומחים הפועלים בתעשייה</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                        <div class="text-blue-500 ml-4 text-3xl shrink-0">🎯</div>
+                        <div>
+                            <h3 class="text-lg font-bold mb-1">ליווי מקצועי</h3>
+                            <p class="text-gray-600 text-sm">תמיכה גם לאחר סיום הקורס בתחילת דרכך המקצועית</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats with כללי 3 Background -->
+    <section class="py-24 relative stats-section">
+        <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('/images/כללי 3.jpg');"></div>
+        <div class="absolute inset-0 bg-gray-900/85"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">קצת עלינו במספרים</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center max-w-5xl mx-auto">
+                <div>
+                    <div class="text-6xl font-bold text-teal-400 mb-2"><span class="counter" data-target="95">0</span>%</div>
+                    <div class="text-gray-200 font-bold text-lg">אחוזי הצלחה</div>
+                </div>
+                <div>
+                    <div class="text-6xl font-bold text-teal-400 mb-2"><span class="counter" data-target="5000">0</span>+</div>
+                    <div class="text-gray-200 font-bold text-lg">תלמידים מרוצים</div>
+                </div>
+                <div>
+                    <div class="text-6xl font-bold text-teal-400 mb-2"><span class="counter" data-target="20">0</span>+</div>
+                    <div class="text-gray-200 font-bold text-lg">קורסים ותוכניות</div>
+                </div>
+                <div>
+                    <div class="text-6xl font-bold text-teal-400 mb-2"><span class="counter" data-target="50">0</span>+</div>
+                    <div class="text-gray-200 font-bold text-lg">אנשי צוות ומרצים</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- In The Press -->
+    <section class="py-20 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-4xl font-bold text-center mb-12 text-blue-900">מן העיתונות</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="https://www.bhol.co.il/news/1020349" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 p-6 rounded-xl shadow-sm border-r-4 border-blue-500 hover:-translate-y-1 hover:shadow-md transition">
+                    <img src="https://www.google.com/s2/favicons?domain=bhol.co.il&sz=128" alt="בחדרי חרדים" class="h-10 mb-4 rounded">
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">בחדרי חרדים</h3>
+                    <p class="text-gray-600">קראו את הראיון המיוחד איתנו והצצה לעשייה שלנו</p>
+                </a>
+                <a href="https://runpanel.co.il/itzik-weksler/" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 p-6 rounded-xl shadow-sm border-r-4 border-green-500 hover:-translate-y-1 hover:shadow-md transition">
+                    <img src="https://www.google.com/s2/favicons?domain=runpanel.co.il&sz=128" alt="Runpanel" class="h-10 mb-4 rounded">
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">Runpanel</h3>
+                    <p class="text-gray-600">ראיון מקצועי ומקיף באתר הריצה המוביל</p>
+                </a>
+                <a href="https://www.israelhayom.co.il/article/678409" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 p-6 rounded-xl shadow-sm border-r-4 border-red-500 hover:-translate-y-1 hover:shadow-md transition">
+                    <img src="https://www.google.com/s2/favicons?domain=israelhayom.co.il&sz=128" alt="ישראל היום" class="h-10 mb-4 rounded">
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">ישראל היום</h3>
+                    <p class="text-gray-600">כתבה נרחבת על הפעילות והחזון של מכון וקסלר</p>
+                </a>
+                <a href="https://www.kolhair.co.il/businesses/influence/38996/" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 p-6 rounded-xl shadow-sm border-r-4 border-purple-500 hover:-translate-y-1 hover:shadow-md transition">
+                    <img src="https://www.google.com/s2/favicons?domain=kolhair.co.il&sz=128" alt="כל העיר" class="h-10 mb-4 rounded">
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">כל העיר</h3>
+                    <p class="text-gray-600">השפעה והשראה בקהילה כתבת פרופיל</p>
+                </a>
+                <a href="https://www.ynet.co.il/activism/article/h1sqbtr9t" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 p-6 rounded-xl shadow-sm border-r-4 border-orange-500 hover:-translate-y-1 hover:shadow-md transition">
+                    <img src="https://www.google.com/s2/favicons?domain=ynet.co.il&sz=128" alt="Ynet" class="h-10 mb-4 rounded">
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">Ynet</h3>
+                    <p class="text-gray-600">אקטיביזם ועשייה חברתית למען הקהילה</p>
+                </a>
+                <a href="https://www.kan.org.il/content/kan-news/newstv/p-11894/s1/719074/" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 p-6 rounded-xl shadow-sm border-r-4 border-teal-500 hover:-translate-y-1 hover:shadow-md transition">
+                    <img src="https://www.google.com/s2/favicons?domain=kan.org.il&sz=128" alt="כאן 11" class="h-10 mb-4 rounded">
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">כאן 11</h3>
+                    <p class="text-gray-600">הופעה מיוחדת במהדורת החדשות של תאגיד השידור</p>
+                </a>
+                <a href="https://podcasts.apple.com/fr/podcast/%D7%90%D7%99%D7%96%D7%94%D7%95-%D7%92%D7%99%D7%91%D7%95%D7%A8-43-%D7%90%D7%99%D7%A6%D7%99%D7%A7-%D7%95%D7%A7%D7%A1%D7%9C%D7%A8-%D7%9E%D7%A4%D7%A7-%D7%A6-%D7%91%D7%9E%D7%92%D7%9C%D7%9F-%D7%91%D7%9F-%D7%90%D7%A8%D7%91%D7%A2%D7%99%D7%9D-%D7%95%D7%A9%D7%AA%D7%99%D7%99%D7%9D/id1749138045?i=1000708467675&l=en-GB" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 p-6 rounded-xl shadow-sm border-r-4 border-yellow-500 hover:-translate-y-1 hover:shadow-md transition md:col-span-2 lg:col-span-2 flex flex-col justify-center">
+                    <img src="https://www.google.com/s2/favicons?domain=podcasts.apple.com&sz=128" alt="Apple Podcasts" class="h-10 mb-4 rounded w-max">
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">הפודקאסט - איזהו גיבור</h3>
+                    <p class="text-gray-600">האזינו לפרק מיוחד עם איציק, על המילואים במגלן, על הפציעה ועל המאבק שאחריה</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <section class="py-20 bg-gray-50 overflow-hidden border-b border-gray-200">
+        <div class="container mx-auto px-4 mb-12">
+            <h2 class="text-4xl font-bold text-center text-blue-900">המלצות מלקוחות שהיו חייבים לספר</h2>
+        </div>
+        
+        <div class="w-full relative">
+            <div class="flex gap-6 w-max animate-scroll">
+                
+                <!-- Block 1 -->
+                <div class="flex gap-6 shrink-0 px-3">
+                    <img src="/images/2.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/3.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/4.png" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/5.jpg" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/6.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/7.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/8.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/9.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/10.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/11.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/12.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/13.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/14.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                </div>
+
+                <!-- Block 2 (Duplicate for infinite scroll) -->
+                <div class="flex gap-6 shrink-0 px-3">
+                    <img src="/images/2.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/3.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/4.png" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/5.jpg" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/6.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/7.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/8.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/9.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/10.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/11.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/12.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/13.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                    <img src="/images/14.webp" alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <CrmBlock />
+</Layout>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        if(entries[0].isIntersecting) {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const updateCount = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target === 5000 ? '5k' : target;
+                    }
+                };
+                updateCount();
+            });
+            observer.disconnect();
+        }
+    });
+    
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) observer.observe(statsSection);
+</script>

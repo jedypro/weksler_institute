@@ -1,0 +1,223 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Fetch upcoming courses from Airtable
+const API_KEY = import.meta.env.AIRTABLE_API_KEY;
+const BASE_ID = import.meta.env.AIRTABLE_BASE_ID;
+const TABLE = encodeURIComponent('קורסים פרונטליים');
+const VIEW = encodeURIComponent('יועצי בריאות');
+
+let courses = [];
+
+try {
+    const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE}?view=${VIEW}`;
+    const response = await fetch(url, {
+        headers: {
+            Authorization: `Bearer ${API_KEY}`
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP status ${response.status}`);
+    }
+
+    const data = await response.json();
+    courses = data.records;
+} catch (error) {
+    // Log error with variables liable to cause it
+    console.error("Failed to fetch NLP courses from Airtable", { error, BASE_ID, TABLE, VIEW });
+}
+
+// Format date from YYYY-MM-DD to DD.MM.YYYY
+const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const [year, month, day] = dateString.split('-');
+    return `${day}.${month}.${year}`;
+};
+---
+
+<Layout title="קורס יועצי בריאות במגמת תזונה ו-NLP - מכון וקסלר">
+    <section class="bg-blue-900 text-white py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('/images/courses/יועצי בריאות פרונטלי.jpg');"></div>
+        <div class="container mx-auto px-4 relative z-10 max-w-5xl">
+            <div class="inline-block bg-white text-blue-900 font-bold px-6 py-2 rounded-full mb-6 text-sm">הכשרה מקצועית מקיפה</div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-teal-400">קורס יועצי בריאות במגמת תזונה ו-NLP</h1>
+            <p class="text-xl md:text-2xl mb-8 leading-relaxed max-w-4xl mx-auto font-medium text-white p-4 rounded-xl shadow-md" style="background-color: rgba(31, 41, 55, 0.8);">
+                הדרך שלכם להפוך למאמנים מובילים המעניקים ערך ייחודי. שילוב מנצח של תזונה, שינוי הרגלים ותמיכה מנטלית בעזרת כלי NLP.
+            </p>
+            <a href="#contact-us" class="inline-block bg-teal-500 hover:bg-teal-400 text-white font-bold text-xl py-4 px-16 min-w-[300px] rounded-full shadow-lg transform hover:-translate-y-1 transition duration-300">
+                לפרטים והרשמה לחצו כאן
+            </a>
+            
+            {courses.length > 0 && (
+                <div class="mt-12 max-w-3xl mx-auto space-y-4">
+                    {courses.map((course) => (
+                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl text-lg text-white shadow-xl hover:bg-white/15 transition duration-300">
+                            <h3 class="text-2xl font-bold text-teal-300 mb-4 drop-shadow-md">
+                                <span aria-hidden="true">✨</span> מחזור חדש ייפתח ב-{formatDate(course.fields['תאריך פתיחה'])}!
+                            </h3>
+                            <p class="mb-2 text-xl font-light">
+                                הקורס יתקיים בימי {course.fields['יום בשבוע']} בין השעות {course.fields['שעות הקורס']} ב{course.fields['מיקום']}
+                            </p>
+                            {course.fields['הערות נוספות'] && (
+                                <p class="text-teal-200 font-medium">
+                                    <span aria-hidden="true">💡</span> {course.fields['הערות נוספות']}
+                                </p>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h2 class="text-3xl lg:text-4xl font-bold text-blue-900 mb-4">בואו נדבר על אוכל בשפה אחרת</h2>
+                <p class="text-lg text-gray-800 leading-relaxed">
+                    כמה חשוב לך להיות המאמן שמעניק למתאמנים שלו ערך ייחודי ובלתי מתפשר – כזה שמשלב בין תזונה, מוטיבציה והרגלים לחיים בריאים ומאוזנים?
+                </p>
+                <p class="text-lg text-gray-800 leading-relaxed">
+                    היית רוצה ללמוד ביסודיות איך ליצור שינוי אמיתי, לא רק בגוף אלא גם בתודעה של הלקוחות שלך – ולעזור להם להתמיד ולהגיע לתוצאות שיחזיקו לאורך זמן?
+                </p>
+                <hr class="border-gray-200 my-6">
+                <h3 class="text-2xl font-bold text-teal-600">עכשיו זה הזמן שלך להתפתח ולהתמקצע</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    תוכנית ההכשרה שלנו מיועדת במיוחד למאמני כושר כמו יוגה ופילאטיס, וגם לאנשים שרוצים לפתוח קריירה חדשה בתחום התזונה והאכילה הרגשית. אנחנו ניתן לך את המרכיב הסודי שיגרום לך לבלוט מעל כולם.
+                </p>
+            </div>
+            <div>
+                <img src="/images/פרונטלי/תזונה ונלפ 1.jpg" alt="תזונה בריאה" class="rounded-2xl shadow-2xl w-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 border-y border-gray-200">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-900 mb-12">מה תקבלו בקורס?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <div aria-hidden="true" class="text-teal-500 text-4xl mb-4">📚</div>
+                    <h3 class="text-xl font-bold mb-3 text-blue-800">ידע מקיף ומקצועי</h3>
+                    <p class="text-gray-600 text-sm">הבנה עמוקה בתזונה ופיזיולוגיה, והתאמת תזונה מיטבית לסוג פעילות גופנית.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <div aria-hidden="true" class="text-teal-500 text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-3 text-blue-800">כלים מעולם ה-NLP</h3>
+                    <p class="text-gray-600 text-sm">היכרות מעמיקה עם הגישה, שינוי דפוסי חשיבה והתמודדות אמיתית עם אכילה רגשית.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <div aria-hidden="true" class="text-teal-500 text-4xl mb-4">⚕️</div>
+                    <h3 class="text-xl font-bold mb-3 text-blue-800">הרצאות מומחים</h3>
+                    <p class="text-gray-600 text-sm">למידה מרופאים מובילים בתחומם ולימוד פרקטי של פענוח בדיקות דם.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                    <div aria-hidden="true" class="text-teal-500 text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-3 text-blue-800">הצבת מטרות</h3>
+                    <p class="text-gray-600 text-sm">כללים ברורים להצבת מטרות תזונתיות, ותוכנית ממוקדת לבניית אימון כושר איכותי.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-blue-900 mb-6">פרטי התוכנית וההסמכה</h2>
+                <ul class="text-lg text-gray-800 bg-gray-50 p-8 rounded-2xl shadow-inner border border-gray-100 flex flex-col gap-4">
+                    <li class="flex items-start gap-3">
+                        <span aria-hidden="true" class="text-teal-500 mt-1 w-6 text-center">🕒</span> 
+                        <strong class="w-32 shrink-0">היקף הלימודים:</strong> 
+                        <span>22 מפגשים, כל מפגש 4 שעות, סך הכל 96 שעות.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span aria-hidden="true" class="text-teal-500 mt-1 w-6 text-center">🎓</span> 
+                        <strong class="w-32 shrink-0">תנאי קבלה:</strong> 
+                        <span>תעודת סיום 12 שנות לימוד וראיון אישי.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span aria-hidden="true" class="text-teal-500 mt-1 w-6 text-center">📜</span> 
+                        <strong class="w-32 shrink-0">תעודה:</strong> 
+                        <span>לעומדים בדרישות עם ציון מעל 65 תוענק תעודת יועץ בריאות במגמת תזונה ו-NLP.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span aria-hidden="true" class="text-teal-500 mt-1 w-6 text-center">🛡️</span> 
+                        <strong class="w-32 shrink-0">ביטוח:</strong> 
+                        <span>ההסמכה מוכרת על ידי חברות הביטוח ומאפשרת ביטוח אחריות מקצועית.</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div>
+                <h2 class="text-3xl font-bold text-blue-900 mb-6">בונוסים שווים לנרשמים</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-teal-50 p-4 rounded-lg border border-teal-100">
+                        <strong class="text-teal-700 block mb-1">ספר הקוד הסוכרתי</strong>
+                        <span class="text-sm text-gray-600">מאת איציק וקסלר, ישלח אליכם.</span>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg border border-teal-100">
+                        <strong class="text-teal-700 block mb-1">חוברת פענוח בדיקות דם</strong>
+                        <span class="text-sm text-gray-600">מדריך מפורט ומקצועי.</span>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg border border-teal-100">
+                        <strong class="text-teal-700 block mb-1">קובץ מתכונים</strong>
+                        <span class="text-sm text-gray-600">רעיונות בריאים ומגוונים.</span>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg border border-teal-100">
+                        <strong class="text-teal-700 block mb-1">שאלון אבחון</strong>
+                        <span class="text-sm text-gray-600">לפגישה ראשונה אפקטיבית.</span>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg border border-teal-100">
+                        <strong class="text-teal-700 block mb-1">מפגש סופרויז'ן אישי</strong>
+                        <span class="text-sm text-gray-600">להתייעצות לאחר סיום הקורס.</span>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg border border-teal-100">
+                        <strong class="text-teal-700 block mb-1">קהילת בוגרים חזקה</strong>
+                        <span class="text-sm text-gray-600">קבוצת תמיכה והשתלמויות מקוונות.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <img src="/images/פרונטלי/תזונה ונלפ 2.jpg" alt="אוכל בריא ותזונה" class="rounded-2xl shadow-xl w-full h-[400px] object-cover">
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-4 max-w-5xl text-center">
+            <h2 class="text-3xl font-bold text-blue-900 mb-4">רוצים לשמוע עוד?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="aspect-video rounded-xl overflow-hidden shadow-lg bg-black">
+                    <iframe title="עדות בוגרת קורס תזונה" width="100%" height="100%" src="https://www.youtube.com/embed/jjFb9WbAY14" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="aspect-video rounded-xl overflow-hidden shadow-lg bg-black">
+                    <iframe title="עדות בוגר קורס תזונה" width="100%" height="100%" src="https://www.youtube.com/embed/TYRtu5WGsP8" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="aspect-video rounded-xl overflow-hidden shadow-lg bg-black">
+                    <iframe title="הסבר על קורס ייעוץ בריאות" width="100%" height="100%" src="https://www.youtube.com/embed/2IOKp1QtG80" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-us" class="py-20 bg-blue-900 text-center relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">מאמן? מדריכה? הגיע הזמן לתת ללקוחות פתרון שלם!</h2>
+            <p class="text-xl text-white mb-10 max-w-3xl mx-auto">בקורס הייחודי שלנו תלמדו את כל מה שצריך כדי להפוך ליועצי בריאות מוסמכים המעניקים מעטפת מלאה.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <a href="https://secure.cardcom.solutions/EA/EA5/0mT2auVMUG46hXtKzd50Q/Order" target="_blank" class="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-400 text-white font-bold text-xl px-16 min-w-[300px] rounded-full shadow-xl transform hover:scale-105 transition duration-300" style="min-height: 56px; padding-top: 12px; padding-bottom: 12px;">
+                    הירשמו עכשיו לקורס
+                </a>
+                
+                <a href="https://wa.me/972508375753?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%AA%D7%99%D7%99%D7%A2%D7%A5%20%D7%9C%D7%92%D7%91%D7%99%20%D7%A7%D7%95%D7%A8%D7%A1%20%D7%AA%D7%96%D7%95%D7%A0%D7%94%20%D7%95-NLP" target="_blank" class="inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold text-xl px-16 min-w-[300px] rounded-full shadow-xl transform hover:scale-105 transition duration-300" style="min-height: 56px; padding-top: 12px; padding-bottom: 12px;">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/></svg>
+                    לא בטוחים? דברו איתנו!
+                </a>
+            </div>
+        </div>
+    </section>
+</Layout>

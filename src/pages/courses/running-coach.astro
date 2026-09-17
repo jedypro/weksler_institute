@@ -1,0 +1,205 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Fetch upcoming courses from Airtable
+const API_KEY = import.meta.env.AIRTABLE_API_KEY;
+const BASE_ID = import.meta.env.AIRTABLE_BASE_ID;
+const TABLE = encodeURIComponent('קורסים פרונטליים');
+const VIEW = encodeURIComponent('מאמני ריצה');
+
+let courses = [];
+
+try {
+  const url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE}?view=${VIEW}`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${API_KEY}`
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP status ${response.status}`);
+  }
+
+  const data = await response.json();
+  courses = data.records;
+} catch (error) {
+  // Log error with variables liable to cause it
+  console.error("Failed to fetch running coach courses from Airtable", { error, BASE_ID, TABLE, VIEW });
+}
+
+// Format date from YYYY-MM-DD to DD.MM.YYYY
+const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const [year, month, day] = dateString.split('-');
+    return `${day}.${month}.${year}`;
+};
+---
+
+<Layout title="קורס מאמני ריצה וכושר רפואי - מכון וקסלר">
+    <section class="bg-blue-900 text-white py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-30 bg-cover bg-center" style="background-image: url('/images/פרונטלי/מאמני ריצה 1.webp');"></div>
+        <div class="container mx-auto px-4 relative z-10 max-w-5xl">
+            <div class="inline-block bg-white text-blue-900 font-bold px-6 py-2 rounded-full mb-6 text-sm">התוכנית היחידה מסוגה בארץ</div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-teal-400">קורס מאמני ריצה וכושר רפואי</h1>
+            <p class="text-xl md:text-2xl mb-8 leading-relaxed max-w-4xl mx-auto font-medium text-white p-4 rounded-xl shadow-md" style="background-color: rgba(31, 41, 55, 0.8);">
+                הפכו את האהבה למקצוע! תוכנית הכשרה מרתקת המשלבת אנטומיה, פיזיולוגיה, פציעות ספורט ואימון מנטאלי באווירת בוטיק.
+            </p>
+            <a href="#contact-us" class="inline-block bg-teal-500 hover:bg-teal-400 text-white font-bold text-xl py-4 px-16 min-w-[280px] rounded-full shadow-lg transform hover:-translate-y-1 transition duration-300">
+                לפרטים והרשמה
+            </a>
+            
+            {courses.length > 0 && (
+                <div class="mt-12 max-w-3xl mx-auto space-y-4">
+                    {courses.map((course) => (
+                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl text-lg text-white shadow-xl hover:bg-white/15 transition duration-300">
+                             <h3 class="text-2xl font-bold text-teal-300 mb-4 drop-shadow-md">
+                                <span aria-hidden="true">✨</span> מחזור חדש ייפתח ב-{formatDate(course.fields['תאריך פתיחה'])}!
+                             </h3>
+                             <p class="mb-2 text-xl font-light">
+                                 הקורס יתקיים בימי {course.fields['יום בשבוע']} בין השעות {course.fields['שעות הקורס']} ב{course.fields['מיקום']}
+                             </p>
+                             {course.fields['הערות נוספות'] && (
+                                 <p class="text-teal-200 font-medium">
+                                     <span aria-hidden="true">💡</span> {course.fields['הערות נוספות']}
+                                 </p>
+                             )}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <img src="/images/פרונטלי/מאמני ריצה 2.jpg" alt="מאמן ריצה רושם הערות" class="rounded-2xl shadow-2xl w-full object-cover">
+            </div>
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-blue-900 mb-6">האם התוכנית מתאימה לי?</h2>
+                <ul class="text-lg space-y-4 text-gray-800">
+                    <li class="flex items-center gap-3"><span aria-hidden="true" class="text-teal-500">✔️</span> אתה חולם לשנות קריירה ולעבוד בתחום דינאמי ומרתק?</li>
+                    <li class="flex items-center gap-3"><span aria-hidden="true" class="text-teal-500">✔️</span> אתה מחפש הכנסה נוספת במקצוע שאתה אוהב?</li>
+                    <li class="flex items-center gap-3"><span aria-hidden="true" class="text-teal-500">✔️</span> יש לך רקע בתחום הריצה בכל הרמות?</li>
+                    <li class="flex items-center gap-3"><span aria-hidden="true" class="text-teal-500">✔️</span> חשוב לך לקבל ידע מקיף ומקצועי מרופאים מומחים?</li>
+                    <li class="flex items-center gap-3"><span aria-hidden="true" class="text-teal-500">✔️</span> אתה רוצה להשפיע על חייהם ובריאותם של אנשים אחרים?</li>
+                </ul>
+                <div class="mt-6 p-4 bg-blue-50 border-r-4 border-blue-900 rounded-l-lg text-blue-900 font-bold">
+                    אם התשובות לשאלות חיוביות – מקומך איתנו!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 border-y border-gray-200">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-900 mb-12">מה מקבלים בקורס?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex gap-4">
+                    <div aria-hidden="true" class="text-teal-500 text-3xl">🏃</div>
+                    <div><h3 class="font-bold text-lg text-blue-900">תורת האימון</h3><p class="text-gray-600 text-sm">ידע מקיף, בניית תוכניות למתחילים ולמתקדמים.</p></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex gap-4">
+                    <div aria-hidden="true" class="text-teal-500 text-3xl">⚕️</div>
+                    <div><h3 class="font-bold text-lg text-blue-900">מרצים מומחים</h3><p class="text-gray-600 text-sm">הרצאות מרופאים מובילים בתחומם.</p></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex gap-4">
+                    <div aria-hidden="true" class="text-teal-500 text-3xl">🦴</div>
+                    <div><h3 class="font-bold text-lg text-blue-900">אנטומיה ופציעות</h3><p class="text-gray-600 text-sm">לימודי פיזיולוגיה, טיפול ושיקום מפציעות ספורט.</p></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex gap-4">
+                    <div aria-hidden="true" class="text-teal-500 text-3xl">🥗</div>
+                    <div><h3 class="font-bold text-lg text-blue-900">תזונה לספורטאים</h3><p class="text-gray-600 text-sm">התאמת התזונה לפעילות הגופנית.</p></div>
+                </div>
+            </div>
+
+            <div class="bg-teal-50 p-8 rounded-2xl border border-teal-100 text-center">
+                <h3 class="text-2xl font-bold text-teal-800 mb-4"><span aria-hidden="true">🎁</span> בונוסים מיוחדים</h3>
+                <div class="flex flex-wrap justify-center gap-4 text-teal-900 font-medium">
+                    <span class="bg-white px-4 py-2 rounded-full shadow-sm">פענוח בדיקות דם</span>
+                    <span class="bg-white px-4 py-2 rounded-full shadow-sm">קורס קינזיולוגיה יישומית</span>
+                    <span class="bg-white px-4 py-2 rounded-full shadow-sm">אימון מנטאלי לספורטאים</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">תעודה ויכולות עבודה</h2>
+                <p class="text-gray-700">העומדים בדרישות יקבלו תעודת <strong>מאמן ריצה וכושר רפואי</strong> מטעם מכון וקסלר.</p>
+                <ul class="text-gray-700 space-y-3">
+                    <li class="flex items-start gap-2"><span aria-hidden="true" class="text-teal-500">✓</span> יכולת לאמן קבוצות ויחידים.</li>
+                    <li class="flex items-start gap-2"><span aria-hidden="true" class="text-teal-500">✓</span> כתיבת תוכניות אימון מותאמות אישית.</li>
+                    <li class="flex items-start gap-2"><span aria-hidden="true" class="text-teal-500">✓</span> הוצאת אנשים מאורח חיים ישבני לחיים פעילים.</li>
+                    <li class="flex items-start gap-2"><span aria-hidden="true" class="text-teal-500">✓</span> הדרכת מתאמנים עם מחלות רקע שונות בבטחה.</li>
+                </ul>
+                <p class="text-gray-600 text-sm mt-4">ההסמכה מוכרת על ידי חברות הביטוח לעבודה כמאמנים, בכפוף לקורס עזרה ראשונה שאינו כלול.</p>
+            </div>
+            
+            <div class="bg-gray-900 text-white p-8 rounded-2xl shadow-xl">
+                <h2 class="text-2xl font-bold text-teal-400 mb-6">מבנה הקורס והרשמה</h2>
+                <ul class="space-y-4 text-gray-300">
+                    <li class="border-b border-gray-700 pb-2"><strong>מפגשים:</strong> 17 מפגשים, כל מפגש 4 שעות, סך הכל 110 שעות אקדמיות.</li>
+                    <li class="border-b border-gray-700 pb-2"><strong>פורמט:</strong> משולב! 4 מפגשים פיזיים מעשיים, והשאר בזום.</li>
+                    <li class="border-b border-gray-700 pb-2"><strong>תנאי קבלה:</strong> ראיון אישי, 12 שנות לימוד.</li>
+                    <li class="pt-2"><strong>דמי רישום:</strong> 350 שקלים, שייגבו במעמד ההרשמה.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-12">מה הבוגרים שלנו מספרים?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-md relative mt-8 border-t-4 border-teal-500">
+                    <div class="absolute -top-12 left-1/2 transform -translate-x-1/2">
+                        <img src="/images/פרונטלי/יפעת חן.webp" alt="יפעת חן" class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover">
+                    </div>
+                    <div class="pt-16 text-center">
+                        <h3 class="font-bold text-xl text-blue-900 mb-1">יפעת חן</h3>
+                        <p class="text-gray-600 text-sm italic mb-4">מאמנת ריצה</p>
+                        <p class="text-gray-700 leading-relaxed text-sm">
+                            קורס מאמני ריצה מעולה! למדתי חומר עיוני מרתק, ותרגלנו חומר מעשי ברמה גבוהה. המרצים באיכות גבוהה. השילוב של ידע מעולם הספורט, התזונה, הרפואה והמוטיבציה פשוט תענוג! מיד עם סיום הקורס פתחתי קבוצות ריצה, והצוות נמצא תמיד ברקע לתמוך. בית חם ומומלץ!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-md relative mt-8 border-t-4 border-blue-600">
+                    <div class="absolute -top-12 left-1/2 transform -translate-x-1/2">
+                        <img src="/images/פרונטלי/משה רוזנבלום.webp" alt="משה רוזנבלום" class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover bg-gray-200">
+                    </div>
+                    <div class="pt-16 text-center">
+                        <h3 class="font-bold text-xl text-blue-900 mb-1">משה רוזנבלום</h3>
+                        <p class="text-gray-600 text-sm italic mb-4">מאמן אישי וקבוצות</p>
+                        <p class="text-gray-700 leading-relaxed text-sm">
+                            סיימתי לפני שלוש שנים, וכיום אני מאמן 4 קבוצות בוגרים, חוגי ילדים, כושר קרבי ומלווה מתאמנים באונליין. הקורס מקצועי מאוד באווירה משפחתית. הפלטפורמה מעולה להתפתחות ונותנת ידע חשוב באימון אוכלוסיות שונות ומחלות. אין על מכון וקסלר, רוצו על זה!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-us" class="py-20 bg-blue-900 text-center relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">איך יראו החיים שלך כשתעבוד בתחום האהוב עליך?</h2>
+            <p class="text-xl text-white mb-10 max-w-2xl mx-auto drop-shadow-md">הקורס היחיד בארץ המשלב רופאים מומחים. בואו לרכוש את הידע המקצועי ביותר שיעניק למתאמנים שלכם ערך מוסף.</p>
+            
+            <div class="flex flex-col items-center justify-center gap-4">
+                <a href="https://wa.me/15556503061?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%AA%D7%99%D7%99%D7%A2%D7%A5%20%D7%9C%D7%92%D7%91%D7%99%20%D7%A7%D7%95%D7%A8%D7%A1%20%D7%9E%D7%90%D7%9E%D7%A0%D7%99%20%D7%A8%D7%99%D7%A6%D7%94" target="_blank" class="inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold text-lg px-12 min-w-[300px] rounded-full shadow-xl transform hover:scale-105 transition duration-300" style="min-height: 64px; padding-top: 16px; padding-bottom: 16px;">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/></svg>
+                    דברו איתנו בוואטסאפ
+                </a>
+                <a href="https://secure.cardcom.solutions/EA/EA5/5QsosK4DgEGZGD4WxpBKw/Order" target="_blank" class="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-400 text-white font-bold text-lg px-12 min-w-[300px] rounded-full shadow-xl transform hover:scale-105 transition duration-300" style="min-height: 64px; padding-top: 16px; padding-bottom: 16px;">
+                    לרכישה והרשמה מהירה
+                </a>
+            </div>
+        </div>
+    </section>
+</Layout>

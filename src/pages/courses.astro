@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CrmBlock from '../components/CrmBlock.astro';
+---
+<Layout title="קורסים והכשרות מכון וקסלר">
+    <section class="bg-blue-900 text-white py-20 text-center relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-5xl font-bold mb-6">הקורסים וההכשרות שלנו</h1>
+            <p class="text-xl max-w-3xl mx-auto opacity-90 leading-relaxed">
+                בחרו את המסלול המתאים לכם ביותר. הכשרות מקצועיות פרונטליות לבניית קריירה או קורסים דיגיטליים ללמידה עצמאית מהבית.
+            </p>
+        </div>
+    </section>
+
+    <!-- הכשרות מקצועיות פרונטליות -->
+    <section class="py-20 bg-gray-50 border-b border-gray-200">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-4xl font-bold text-center mb-4 text-blue-900">הכשרות מקצועיות פרונטליות</h2>
+            <p class="text-center text-gray-600 mb-12 text-lg">למידה מעשית בכיתות לימוד עם ליווי צמוד של טובי המרצים בתעשייה</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- קורס יועצי בריאות ו-NLP -->
+                <a href="/courses/nlp-nutrition" class="block bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="/images/courses/יועצי בריאות פרונטלי.jpg" alt="יועצי בריאות ותזונה" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-transparent"></div>
+                        <h3 class="absolute bottom-6 right-6 text-2xl font-bold text-white pr-4 border-r-4 border-green-400">יועצי בריאות במגמת תזונה ו-NLP</h3>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            הכשרה ייחודית המעניקה ידע מקיף בתזונה ופיזיולוגיה בשילוב גישת NLP להתמודדות עם אכילה רגשית. המסלול מיועד למאמני כושר ולכל מי שמעוניין לפתח קריירה חדשה ומרתקת בתחום התזונה והבריאות.
+                        </p>
+                        <span class="text-blue-600 font-bold flex items-center gap-2 group-hover:text-blue-800 transition">
+                            לפרטים המלאים 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- קורס מאמני ריצה -->
+                <a href="/courses/running-coach" class="block bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="/images/courses/מאמני ריצה פרונטלי.jpg" alt="מאמני ריצה" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-transparent"></div>
+                        <h3 class="absolute bottom-6 right-6 text-2xl font-bold text-white pr-4 border-r-4 border-blue-400">הכשרת מאמני ריצה</h3>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            מסלול הכשרה מקצועי ומוביל המקנה את כל הכלים המעשיים והתיאורטיים להדרכת ריצה נכונה ובטוחה. למדו כיצד לבנות תוכניות אימון אישיות וקבוצתיות ולהפוך למאמנים מבוקשים בתחום הריצה.
+                        </p>
+                        <span class="text-blue-600 font-bold flex items-center gap-2 group-hover:text-blue-800 transition">
+                            לפרטים המלאים 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- קורסים דיגיטליים -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-4xl font-bold text-center mb-4 text-blue-900">קורסים דיגיטליים</h2>
+            <p class="text-center text-gray-600 mb-12 text-lg">למידה גמישה ומקיפה מכל מקום ובקצב אישי</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- יועצי בריאות אונליין -->
+                <a href="/courses/health-consulting-online" class="block bg-gray-50 rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/images/courses/יועצי בריאות אונליין.jpg" alt="יועצי בריאות אונליין" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 right-4 text-xl font-bold text-white">יועצי בריאות אונליין</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            הכשרה מקוונת מקיפה המעניקה ידע מקצועי וכלים פרקטיים בייעוץ תזונה ובריאות. למדו לבנות תפריטים ולהוביל מתאמנים להישגים ללא צורך בהגעה לכיתה.
+                        </p>
+                        <span class="text-blue-600 font-bold text-sm">גלו עוד &larr;</span>
+                    </div>
+                </a>
+
+                <!-- תזונה קטוגנית -->
+                <a href="/courses/keto-diet" class="block bg-gray-50 rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/images/courses/תזונה קטוגנית אונליין.jpg" alt="תזונה קטוגנית" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 right-4 text-xl font-bold text-white">תזונה קטוגנית אונליין</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            המדריך המושלם לאורח חיים קטוגני. התוכנית תעניק לכם כלים לירידה מהירה במשקל שמירה על אנרגיה יציבה לאורך היום ושיפור משמעותי בתפקוד ובריכוז.
+                        </p>
+                        <span class="text-blue-600 font-bold text-sm">גלו עוד &larr;</span>
+                    </div>
+                </a>
+
+                <!-- ניקוי רעלים -->
+                <a href="/courses/detox" class="block bg-gray-50 rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/images/courses/ניקוי רעלים אונליין.jpg" alt="ניקוי רעלים" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <h3 class="absolute bottom-4 right-4 text-xl font-bold text-white">קורס ניקוי רעלים</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            תוכנית מעשית לאיזון הגוף וירידה בריאה במשקל. למדו כיצד לשחרר את הגוף מעומסים ולהחזיר לעצמכם את החיוניות והאנרגיה בתהליך טבעי ומודרך.
+                        </p>
+                        <span class="text-blue-600 font-bold text-sm">גלו עוד &larr;</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <CrmBlock />
+</Layout>
