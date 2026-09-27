@@ -48,7 +48,7 @@ import CrmBlock from '../components/CrmBlock.astro';
             <h2 class="text-4xl font-bold text-center mb-12 text-blue-900">התוכניות שלנו</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Card 1 -->
-                <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                <a href={import.meta.env.BASE_URL + "/#contact"} class="block bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
                     <div class="h-48 overflow-hidden relative">
                         <img src={`${import.meta.env.BASE_URL}/images/presonal_training.jpg`} alt="אימון אישי" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent"></div>
@@ -59,7 +59,7 @@ import CrmBlock from '../components/CrmBlock.astro';
                     </div>
                 </div>
                 <!-- Card 2 -->
-                <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                <a href={import.meta.env.BASE_URL + "/#contact"} class="block bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
                     <div class="h-48 overflow-hidden relative">
                         <img src={`${import.meta.env.BASE_URL}/images/ייעוץ תזונה.jpg`} alt="ייעוץ תזונה" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-green-800/80 to-transparent"></div>
@@ -70,7 +70,7 @@ import CrmBlock from '../components/CrmBlock.astro';
                     </div>
                 </div>
                 <!-- Card 3 -->
-                <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                <a href={import.meta.env.BASE_URL + "/courses#digital"} class="block bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
                     <div class="h-48 overflow-hidden relative">
                         <img src={`${import.meta.env.BASE_URL}/images/digital_courses.jpg`} alt="קורסים דיגיטליים" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-purple-800/80 to-transparent"></div>
@@ -81,7 +81,7 @@ import CrmBlock from '../components/CrmBlock.astro';
                     </div>
                 </div>
                 <!-- Card 4 -->
-                <div class="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
+                <a href={import.meta.env.BASE_URL + "/courses#frontal"} class="block bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group border border-gray-100">
                     <div class="h-48 overflow-hidden relative">
                         <img src={`${import.meta.env.BASE_URL}/images/physical_cert.png`} alt="הכשרות פרונטליות" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-yellow-700/80 to-transparent"></div>
@@ -266,7 +266,7 @@ import CrmBlock from '../components/CrmBlock.astro';
     <CrmBlock />
 </Layout>
 
-<script>
+<script>    
     const observer = new IntersectionObserver((entries) => {
         if(entries[0].isIntersecting) {
             const counters = document.querySelectorAll('.counter');
