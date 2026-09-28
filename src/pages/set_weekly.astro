@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="עם מי תרצה להתאמן?">
+  <!-- עטיפת העמוד עם צבע הרקע המקורי במקום תגית body -->
+  <div class="min-h-screen flex flex-col items-center justify-center gap-10 p-6" style="background: linear-gradient(135deg, rgb(30, 58, 95), rgb(15, 32, 39));">
+    
+    <header class="flex flex-col items-center gap-4 mb-6">
+      <!-- לוגו -->
+      <img class="w-48 h-48 object-cover rounded-full shadow-lg" loading="lazy" src={`${import.meta.env.BASE_URL}images/dark_logo.png`} alt="לוגו הסטודיו">
+      <!-- כותרת -->
+      <h1 class="text-center font-bold text-4xl text-white">עם מי תרצה להתאמן?</h1>
+    </header>
+    
+    <main class="flex flex-wrap justify-center gap-8">
+      
+      <!-- מאמן 1 -->
+      <div class="flex flex-col items-center gap-4">
+        <img class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg" loading="lazy" src={`${import.meta.env.BASE_URL}images/gen3.jpg`} alt="איציק וקסלר"> 
+        <a href="https://cal.com/דוד-יצחקי-7jvq4d/weekly-training" target="_blank" rel="noopener noreferrer" class="block w-56 py-6 rounded-xl text-center shadow-lg hover:scale-105 transition-transform bg-white"> 
+          <span class="font-bold text-2xl" style="color: rgb(30, 58, 95);">איציק וקסלר</span> 
+        </a>
+      </div>
+      
+      <!-- מאמן 2 -->
+      <div class="flex flex-col items-center gap-4">
+        <img class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg" loading="lazy" src={`${import.meta.env.BASE_URL}images/physical_cert.png`} alt="שם המאמן"> 
+        <a href="#" target="_blank" rel="noopener noreferrer" class="block w-56 py-6 rounded-xl text-center shadow-lg hover:scale-105 transition-transform bg-white"> 
+          <span class="font-bold text-2xl" style="color: rgb(30, 58, 95);">שם המאמן</span> 
+        </a>
+      </div>
+      
+    </main>
+  </div>
+</Layout>
