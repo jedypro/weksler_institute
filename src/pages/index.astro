@@ -1,18 +1,50 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CrmBlock from '../components/CrmBlock.astro';
+
+// רשימת התמונות של ההמלצות (כדי שיהיה קל להוסיף או להוריד בעתיד)
+const testimonialImages = [
+    "2.webp", "3.webp", "4.png", "5.jpg", "6.webp", 
+    "7.webp", "8.webp", "9.webp", "10.webp", "11.webp", 
+    "12.webp", "13.webp", "14.webp"
+];
 ---
 <Layout title="מכון וקסלר אימון כושר אישי וייעוץ תזונה">
+    
+    <!-- טעינת העיצוב של Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
-        @keyframes scrollRTL {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50%); } 
+        /* עיצובים מותאמים לקרוסלה החדשה */
+        .swiper {
+            padding-bottom: 4rem !important; /* מקום לנקודות הניווט למטה */
+            padding-top: 1rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
         }
-        .animate-scroll {
-            animation: scrollRTL 70s linear infinite;
+        .swiper-button-next, .swiper-button-prev {
+            background-color: white;
+            width: 48px !important;
+            height: 48px !important;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            color: #1e3a8a !important; /* כחול כהה שמתאים לאתר */
+            transition: all 0.3s ease;
         }
-        .animate-scroll:hover {
-            animation-play-state: paused;
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            transform: scale(1.1);
+            background-color: #f8fafc;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.25rem !important;
+            font-weight: bold;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #1e3a8a !important;
+            width: 24px !important;
+            border-radius: 4px !important;
+            transition: all 0.3s ease;
         }
     </style>
 
@@ -149,7 +181,7 @@ import CrmBlock from '../components/CrmBlock.astro';
 
     <!-- Stats with כללי 3 Background -->
     <section class="py-24 relative stats-section">
-        <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('/images/gen3.jpg`}');"></div>
+        <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('/images/gen3.jpg');"></div>
         <div class="absolute inset-0 bg-gray-900/85"></div>
         
         <div class="container mx-auto px-4 relative z-10">
@@ -213,55 +245,39 @@ import CrmBlock from '../components/CrmBlock.astro';
                 <a href="https://podcasts.apple.com/fr/podcast/%D7%90%D7%99%D7%96%D7%94%D7%95-%D7%92%D7%99%D7%91%D7%95%D7%A8-43-%D7%90%D7%99%D7%A6%D7%99%D7%A7-%D7%95%D7%A7%D7%A1%D7%9C%D7%A8-%D7%9E%D7%A4%D7%A7-%D7%A6-%D7%91%D7%9E%D7%92%D7%9C%D7%9F-%D7%91%D7%9F-%D7%90%D7%A8%D7%91%D7%A2%D7%99%D7%9D-%D7%95%D7%A9%D7%AA%D7%99%D7%99%D7%9D/id1749138045?i=1000708467675&l=en-GB" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 p-6 rounded-xl shadow-sm border-r-4 border-yellow-500 hover:-translate-y-1 hover:shadow-md transition md:col-span-2 lg:col-span-2 flex flex-col justify-center">
                     <img src="https://www.google.com/s2/favicons?domain=podcasts.apple.com&sz=128" alt="Apple Podcasts" class="h-10 mb-4 rounded w-max">
                     <h3 class="font-bold text-xl mb-2 text-blue-900">הפודקאסט - איזהו גיבור</h3>
-                    <p class="text-gray-600">האזינו לפרק מיוחד עם איציק, על המילואים במגלן, על הפציעה ועל המאבק ש   אחריה</p>
+                    <p class="text-gray-600">האזינו לפרק מיוחד עם איציק, על המילואים במגלן, על הפציעה ועל המאבק שאחריה</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Slider -->
+    <!-- Testimonials Slider (Swiper.js Implementation) -->
     <section class="py-20 bg-gray-50 overflow-hidden border-b border-gray-200">
         <div class="container mx-auto px-4 mb-12">
             <h2 class="text-4xl font-bold text-center text-blue-900">המלצות מלקוחות שהיו חייבים לספר</h2>
         </div>
         
-        <div class="w-full relative">
-            <div class="flex gap-6 w-max animate-scroll">
-                
-                <!-- Block 1 -->
-                <div class="flex gap-6 shrink-0 px-3">
-                    <img src={`${import.meta.env.BASE_URL}/images/2.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/3.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/4.png`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/5.jpg`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/6.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/7.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/8.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/9.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/10.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/11.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/12.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/13.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/14.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+        <div class="container mx-auto max-w-7xl px-4 relative">
+            <div class="swiper testimonials-slider">
+                <div class="swiper-wrapper">
+                    {testimonialImages.map((img) => (
+                        <div class="swiper-slide flex justify-center">
+                            <!-- המסגרת הלבנה סביב ההמלצה -->
+                            <div class="bg-white rounded-xl shadow-md border border-gray-200 p-3 hover:shadow-xl transition-shadow duration-300 w-full flex justify-center">
+                                <img 
+                                    src={`${import.meta.env.BASE_URL}/images/${img}`} 
+                                    alt="המלצה מלקוח" 
+                                    class="h-[400px] w-auto object-contain rounded-lg"
+                                    loading="lazy"
+                                />
+                            </div>
+                        </div>
+                    ))}
                 </div>
-
-                <!-- Block 2 (Duplicate for infinite scroll) -->
-                <div class="flex gap-6 shrink-0 px-3">
-                    <img src={`${import.meta.env.BASE_URL}/images/2.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/3.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/4.png`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/5.jpg`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/6.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/7.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/8.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/9.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/10.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/11.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/12.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/13.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                    <img src={`${import.meta.env.BASE_URL}/images/14.webp`} alt="המלצה" class="h-[400px] w-auto object-contain bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-                </div>
-
+                <!-- אלמנטים לניווט -->
+                <div class="swiper-pagination mt-8"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </div>
     </section>
@@ -269,6 +285,47 @@ import CrmBlock from '../components/CrmBlock.astro';
     <CrmBlock />
 </Layout>
 
+<!-- סקריפטים לטעינת Swiper והפעלתו -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+        // אתחול קרוסלת ההמלצות
+        const swiper = new Swiper('.testimonials-slider', {
+            slidesPerView: 1, // במובייל - תמונה אחת
+            spaceBetween: 20,
+            loop: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 3000, // מעבר כל 3 שניות
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true, // עוצר כשמעבירים את העכבר!
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                // בטאבלט ומעלה - 2 תמונות
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                },
+                // במחשב - 3 תמונות
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 32,
+                }
+            }
+        });
+    });
+</script>
+
+<!-- הסקריפט המקורי לאנימציית המספרים נשאר בדיוק אותו דבר -->
 <script>    
     const observer = new IntersectionObserver((entries) => {
         if(entries[0].isIntersecting) {
