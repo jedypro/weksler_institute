@@ -26,6 +26,19 @@ const { title } = Astro.props;
             <a href={import.meta.env.BASE_URL + "/#contact"} class="hover:text-blue-300 transition">צור קשר</a>
         </div>
         </div>
+    <nav class="bg-blue-900 text-white p-4 shadow-md sticky top-0 z-40">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center max-w-7xl gap-4 md:gap-0">
+            <a href={import.meta.env.BASE_URL + "/"} class="shrink-0 transition hover:opacity-90">
+                <img src={import.meta.env.BASE_URL + "/images/logo.jpg"} alt="מכון וקסלר" class="h-14 object-contain">
+            </a>
+            <div class="flex flex-wrap justify-center gap-3 md:gap-6 text-base md:text-lg font-medium">
+                <a href={import.meta.env.BASE_URL + "/"} class="hover:text-blue-300 transition">ראשי</a>
+                <a href={import.meta.env.BASE_URL + "/about"} class="hover:text-blue-300 transition">על המכון</a>
+                <a href={import.meta.env.BASE_URL + "/courses"} class="hover:text-blue-300 transition">קורסים</a>
+                <a href={import.meta.env.BASE_URL + "/book"} class="hover:text-blue-300 transition">הספר</a>
+                <a href={import.meta.env.BASE_URL + "/#contact"} class="hover:text-blue-300 transition">צור קשר</a>
+            </div>
+        </div>
     </nav>
     
     <main class="flex-grow">
