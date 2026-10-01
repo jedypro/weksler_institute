@@ -7,7 +7,7 @@ import Layout from '../layouts/Layout.astro';
   <main class="min-h-screen bg-stone-50 text-stone-800 font-sans" dir="rtl">
     
     <!-- כותרת ראשית -->
-    <header class="bg-white shadow-sm py-16 px-4 text-center">
+    <header class="bg-[#0D9488] shadow-sm py-16 px-4 text-center">
       <div class="max-w-3xl mx-auto">
         <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-4">ייעוץ תזונה ואורח חיים בריא</h1>
         <p class="text-lg md:text-xl text-stone-600">
@@ -22,7 +22,7 @@ import Layout from '../layouts/Layout.astro';
       <section class="flex flex-col md:flex-row gap-12 items-center bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-stone-100">
         <div class="md:w-1/2 w-full">
           <img 
-            src="/images/nutrition/1.webp" 
+            src={`${import.meta.env.BASE_URL}/images/nutrition/1.webp`}
             alt="פגישת ייעוץ תזונה" 
             class="w-full h-auto rounded-2xl shadow-md object-cover"
           /> <!-- שימוש בתמונה 1.webp[cite: 21] -->
@@ -61,7 +61,7 @@ import Layout from '../layouts/Layout.astro';
       <section class="flex flex-col md:flex-row-reverse gap-12 items-center bg-emerald-50 rounded-3xl p-8 md:p-12 shadow-sm border border-emerald-100">
         <div class="md:w-1/2 w-full">
           <img 
-            src="/images/nutrition/2.jpg" 
+            src={`${import.meta.env.BASE_URL}/images/nutrition/2.jpg`} 
             alt="ליווי וייעוץ מקצועי" 
             class="w-full h-auto rounded-2xl shadow-md object-cover"
           /> <!-- שימוש בתמונה 2.jpg[cite: 21] -->
@@ -98,7 +98,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="flex flex-col md:flex-row">
           <div class="md:w-1/3 bg-stone-100 flex items-center justify-center p-8">
             <img 
-              src="/images/nutrition/שירלי.jpg" 
+              src={`${import.meta.env.BASE_URL}/images/nutrition/שירלי.jpg`} 
               alt="שירלי בן דוד" 
               class="w-48 h-48 md:w-64 md:h-64 rounded-full shadow-lg object-cover border-4 border-white"
             /> <!-- שימוש בתמונה שירלי.jpg[cite: 21] -->
